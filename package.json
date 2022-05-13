@@ -9,13 +9,17 @@
   },
   "dependencies": {
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
+    "@iconify-json/carbon": "^1.1.4",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "@unocss/reset": "^0.33.4",
     "@vitejs/plugin-react": "^1.3.0",
     "typescript": "^4.6.3",
+    "unocss": "^0.33.4",
     "vite": "^2.9.9"
   }
 }
