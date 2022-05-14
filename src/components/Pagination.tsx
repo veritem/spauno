@@ -20,12 +20,13 @@ export function Pagination(props: PaginationProps) {
     return (
         <div
             className={cx(
-                'ais-Pagination',
+                'flex justify-center items-center',
                 canRefine === false && 'ais-Pagination--noRefinement',
                 props.className
             )}
+        // className="flex justify-center items-center"
         >
-            <ul className="ais-Pagination-list">
+            <ul className="flex gap-8 py-12">
                 <PaginationItem
                     aria-label="First"
                     value={0}
@@ -33,11 +34,11 @@ export function Pagination(props: PaginationProps) {
                     createURL={createURL}
                     refine={refine}
                     className={cx(
-                        'ais-Pagination-item',
+                        'text-blue-500',
                         'ais-Pagination-item--firstPage'
                     )}
-                >
-                    {"U+003c"}
+                >    ‹‹
+
                 </PaginationItem>
 
                 <PaginationItem
@@ -47,11 +48,11 @@ export function Pagination(props: PaginationProps) {
                     createURL={createURL}
                     refine={refine}
                     className={cx(
-                        'ais-Pagination-item',
+                        'text-blue-500',
                         'ais-Pagination-item--previousPage'
                     )}
                 >
-                    {"U+003c"}
+                    ‹
                 </PaginationItem>
 
                 {pages.map((page) => (
@@ -63,8 +64,8 @@ export function Pagination(props: PaginationProps) {
                         createURL={createURL}
                         refine={refine}
                         className={cx(
-                            'ais-Pagination-item',
-                            page === currentRefinement && 'ais-Pagination-item--selected'
+                            'text-blue-500',
+                            page === currentRefinement && 'text-green-800'
                         )}
                     >
                         {page + 1}
@@ -77,7 +78,7 @@ export function Pagination(props: PaginationProps) {
                     isDisabled={isLastPage}
                     createURL={createURL}
                     refine={refine}
-                    className={cx('ais-Pagination-item', 'ais-Pagination-item--nextPage')}
+                    className={cx('text-blue-500')}
                 >
                     ›
                 </PaginationItem>
@@ -88,7 +89,7 @@ export function Pagination(props: PaginationProps) {
                     isDisabled={isLastPage}
                     createURL={createURL}
                     refine={refine}
-                    className={cx('ais-Pagination-item', 'ais-Pagination-item--lastPage')}
+                    className={cx('text-blue-500')}
                 >
                     ››
                 </PaginationItem>

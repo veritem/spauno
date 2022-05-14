@@ -63,7 +63,7 @@ export function Highlight<THit extends AlgoliaHit<Record<string, unknown>>>({
                     const isLastPart = partIndex === parts.length - 1;
 
                     return (
-                        <span key={partIndex}>
+                        <span key={partIndex} className="py-4">
                             {part.map((subPart, subPartIndex) => (
                                 <HighlightPart
                                     key={subPartIndex}

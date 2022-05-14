@@ -16,14 +16,14 @@ export function Hits<THit extends AlgoliaHit<Record<string, unknown>>>({
     const { hits } = useHits(props);
 
     return (
-        <div className={cx('ais-Hits', props.className)}>
-            <ol className="ais-Hits-list">
+        <div className={cx('py-5', props.className)}>
+            <section className="grid grid-cols-3 gap-5">
                 {hits.map((hit) => (
-                    <li key={hit.objectID} className="ais-Hits-item">
+                    <div key={hit.objectID} className="ais-Hits-item">
                         <Hit hit={hit as unknown as THit} />
-                    </li>
+                    </div>
                 ))}
-            </ol>
+            </section>
         </div>
     );
 }

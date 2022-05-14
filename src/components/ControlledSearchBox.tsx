@@ -62,7 +62,7 @@ export function ControlledSearchBox({
                     placeholder={placeholder}
                     spellCheck={false}
                     maxLength={512}
-                    type="search"
+                    type="text"
                     value={value}
                     onChange={onChange}
                 />

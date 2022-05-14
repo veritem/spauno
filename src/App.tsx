@@ -1,63 +1,67 @@
 import { Hit as AlgoliaHit } from "@algolia/client-search";
 import algoliasearch from "algoliasearch/lite";
 import {
-  Breadcrumb,
-  HierarchicalMenu,
-  Menu,
-  NumericMenu,
-  Panel,
-  RangeInput,
-  RefinementList,
-  ToggleRefinement
-} from "react-instantsearch-dom";
-import {
   Configure,
   DynamicWidgets,
   InstantSearch
 } from "react-instantsearch-hooks";
 import "./App.css";
 import {
-  ClearRefinements,
   CurrentRefinements,
-  Highlight,
-  HitsPerPage,
-  PoweredBy,
-  QueryRuleContext,
-  QueryRuleCustomData,
+  HierarchicalMenu, Highlight, HitsPerPage,
+  Menu,
+  NumericMenu,
+  Panel, QueryRuleContext, RangeInput,
+  RefinementList,
   SearchBox,
-  SortBy
+  SortBy,
+  ToggleRefinement
 } from "./components";
 import { Hits } from "./components/Hits";
-import { InfiniteHits } from "./components/InfiniteHits";
 import { Pagination } from "./components/Pagination";
-import { Tab, Tabs } from "./components/tabs";
+
 type HitProps = {
   hit: AlgoliaHit<{
-    name: string;
-    price: number;
+    post_title: string;
+    post_price: string;
+    images: {
+      thumbnail: {
+        url: string;
+        height: number;
+        width: number;
+      };
+      woocommerce_250: {
+        url: string;
+        height: number;
+        width: number;
+      }
+    }
+
+    post_modified: number;
   }>;
 };
 
 function Hit({ hit }: HitProps) {
+
+  console.log(hit);
+
+
   return (
-    <>
-      <Highlight hit={hit} attribute="name" className="Hit-label" />
-      <span className="Hit-price">${hit.price}</span>
-    </>
+    <section>
+      <img src={hit.images.woocommerce_250.url} alt={hit.post_title} className="w-full" />
+      <Highlight hit={hit} attribute="post_title" className="Hit-label" />
+      <span className="Hit-price" dangerouslySetInnerHTML={{ __html: hit.post_price }}></span>
+      <div className="Hit-price">last modified at  <span className="italic">{new Intl.DateTimeFormat('en-US').format(new Date(hit.post_modified * 1000))} </span>
+      </div>
+    </section>
   );
 }
 
 function App() {
-  // const searchClient = algoliasearch(
-  //   "NBT0N27ACR",
-  //   "2b05e9374735ebf83d8190cb33bd832b"
-  // );
-
   const searchClient = algoliasearch(
-    "latency",
-    "6be0576ff61c053d5f9a3225e2a90f76"
+    "NBT0N27ACR",
+    "2b05e9374735ebf83d8190cb33bd832b"
   );
-
   return (
     <InstantSearch
       searchClient={searchClient}
@@ -65,7 +69,7 @@ function App() {
       routing={true}
     >
       <Configure ruleContexts={[]} />
-      <div className="Container">
+      <div>
         <div>
           <DynamicWidgets>
             <Panel header="Brands">
@@ -111,13 +115,13 @@ function App() {
           </DynamicWidgets>
         </div>
         <div className="search">
-          <Breadcrumb
+          {/* <Breadcrumb
             attributes={[
               "hierarchicalCategories.lvl0",
               "hierarchicalCategories.lvl1",
               "hierarchicalCategories.lvl2",
             ]}
-          />
+          /> */}
 
           <div className="Search-header">
             <SearchBox placeholder="Search" />
@@ -135,15 +139,13 @@ function App() {
               ]}
             />
           </div>
-          <PoweredBy />
+          {/* <PoweredBy /> */}
           <div className="CurrentRefinements">
-            <ClearRefinements />
+            {/* <ClearRefinements /> */}
             <CurrentRefinements
               transformItems={(items) =>
                 items.map((item) => {
-                  const label = item.label.startsWith(
-                    "hierarchicalCategories"
-                  )
+                  const label = item.label.startsWith("hierarchicalCategories")
                     ? "Hierarchy"
                     : item.label;
 
@@ -161,8 +163,7 @@ function App() {
             }}
           />
 
-
-          <QueryRuleCustomData>
+          {/* <QueryRuleCustomData>
             {({ items }) => (
               <>
                 {items.map((item) => (
@@ -172,17 +173,19 @@ function App() {
                 ))}
               </>
             )}
-          </QueryRuleCustomData>
+          </QueryRuleCustomData> */}
 
-          <Tabs>
+          <Hits hitComponent={Hit} />
+          <Pagination className="Pagination" />
+
+          {/* <Tabs>
             <Tab title="Hits">
-              <Hits hitComponent={Hit} />
-              <Pagination className="Pagination" />
+
             </Tab>
             <Tab title="InfiniteHits">
               <InfiniteHits showPrevious hitComponent={Hit} />
             </Tab>
-          </Tabs>
+          </Tabs> */}
         </div>
       </div>
     </InstantSearch>
