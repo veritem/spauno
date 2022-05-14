@@ -13,9 +13,7 @@ import {
   NumericMenu,
   Panel, QueryRuleContext, RangeInput,
   RefinementList,
-  SearchBox,
-  SortBy,
-  ToggleRefinement
+  SearchBox, ToggleRefinement
 } from "./components";
 import { Hits } from "./components/Hits";
 import { Pagination } from "./components/Pagination";
@@ -123,15 +121,15 @@ function App() {
             ]}
           /> */}
 
-          <div className="Search-header">
+          <div className="flex justify-between">
             <SearchBox placeholder="Search" />
-            <SortBy
+            {/* <SortBy
               items={[
                 { label: "Relevance", value: "instant_search" },
                 { label: "Price (asc)", value: "instant_search_price_asc" },
                 { label: "Price (desc)", value: "instant_search_price_desc" },
               ]}
-            />
+            /> */}
             <HitsPerPage
               items={[
                 { label: "20 hits per page", value: 20, default: true },
@@ -139,9 +137,7 @@ function App() {
               ]}
             />
           </div>
-          {/* <PoweredBy /> */}
           <div className="CurrentRefinements">
-            {/* <ClearRefinements /> */}
             <CurrentRefinements
               transformItems={(items) =>
                 items.map((item) => {
