@@ -37,7 +37,7 @@ export function Pagination(props: PaginationProps) {
                         'ais-Pagination-item--firstPage'
                     )}
                 >
-                    ‹‹
+                    {"U+003c"}
                 </PaginationItem>
 
                 <PaginationItem
@@ -51,7 +51,7 @@ export function Pagination(props: PaginationProps) {
                         'ais-Pagination-item--previousPage'
                     )}
                 >
-                    ‹
+                    {"U+003c"}
                 </PaginationItem>
 
                 {pages.map((page) => (

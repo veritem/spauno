@@ -28,6 +28,8 @@ import {
   SortBy
 } from "./components";
 import { Hits } from "./components/Hits";
+import { InfiniteHits } from "./components/InfiniteHits";
+import { Pagination } from "./components/Pagination";
 import { Tab, Tabs } from "./components/tabs";
 type HitProps = {
   hit: AlgoliaHit<{
@@ -181,7 +183,6 @@ function App() {
               <InfiniteHits showPrevious hitComponent={Hit} />
             </Tab>
           </Tabs>
-
         </div>
       </div>
     </InstantSearch>

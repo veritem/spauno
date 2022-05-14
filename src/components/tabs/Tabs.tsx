@@ -4,14 +4,14 @@ import './Tabs.css';
 
 
 export type TabProps = {
-    children: React.ReactNode | any;
+    children: React.ReactNode;
     title: string;
 };
 
 const getTabId = (index: number, suffix?: string) =>
     [`tab-${index}`, suffix].filter(Boolean).join('-');
 
-export function Tabs({ children }) {
+export function Tabs({ children }: { children: React.ReactNode }) {
     const firstRender = useRef(true);
     const [currentTab, setCurrentTab] = useState(0);
     const tabsRefs = useRef<HTMLElement[]>([]);
@@ -39,7 +39,7 @@ export function Tabs({ children }) {
     return (
         <div className="Tabs">
             <div role="tablist" className="Tabs-header">
-                {React.Children.map<React.ReactChild, React.ReactElement<TabProps>>(
+                {React.Children.map<React.ReactNode, React.ReactElement<TabProps>>(
                     children,
                     (child, index) => {
                         const isSelected = currentTab === index;
